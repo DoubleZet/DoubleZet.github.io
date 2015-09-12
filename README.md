@@ -23,8 +23,8 @@ Start Bootstrap is based on the [Bootstrap](http://getbootstrap.com/) framework 
 
 ## Editor
 
-* Edited by Hyeon Ho Lee (hhlee0310@ubuntu-kr.org).
-Added Daum map API
+Edited by Hyeon Ho Lee (hhlee0310@ubuntu-kr.org).
+* Added Daum map API
 
 ## Copyright and License
 
