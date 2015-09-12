@@ -258,63 +258,35 @@
                     <h2 class="section-heading">찾아오시는 길</h2>
                     <h3 class="section-subheading text-muted">이번 세미나의 장소는 한국마이크로소프트 입니다!</h3>
                 </div>
-            </div><!DOCTYPE html>
+            </div>
 
-        <head>
-            <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
-            <meta charset="euc-kr">
-            <title>구글맵 API 활용하기</title>
-            <script src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
-            <script>
-		function initialize() {
+        <!-- Daum Maps Settings -->
+        <div id="map" style="width:1140px;height:450px;"></div>
 
-			/*
-				http://openapi.map.naver.com/api/geocode.php?key=f32441ebcd3cc9de474f8081df1e54e3&encoding=euc-kr&coord=LatLng&query=서울특별시 강남구 강남대로 456
-                위의 링크에서 뒤에 주소를 적으면 x,y 값을 구할수 있습니다.
-			*/
-			var Y_point			= 37.574821;		// Y 좌표
-			var X_point			= 126.979297;		// X 좌표
+        <script src="//apis.daum.net/maps/maps3.js?apikey=e8668788ae1d0519bc59e5a1c8bdfd22"></script>
+        <script>
+		var mapContainer = document.getElementById('map'), // 지도를 표시할 div
+		    mapOption = {
+		        center: new daum.maps.LatLng(37.574829, 126.979190), // 지도의 중심좌표
+		        level: 3, // 지도의 확대 레벨
+		        mapTypeId : daum.maps.MapTypeId.ROADMAP // 지도종류
+		    };
 
-			var zoomLevel		= 16;						// 지도의 확대 레벨 : 숫자가 클수록 확대정도가 큼
+		// 지도를 생성한다
+		var map = new daum.maps.Map(mapContainer, mapOption);
 
-			var markerTitle		= "위즈소프트";				// 현재 위치 마커에 마우스를 오버을때 나타나는 정보
-			var markerMaxWidth	= 300;						// 마커를 클릭했을때 나타나는 말풍선의 최대 크기
+		// 지도에 마커를 생성하고 표시한다
+		var marker = new daum.maps.Marker({
+		    position: new daum.maps.LatLng(37.574829, 126.979190), // 마커의 좌표
+		    map: map // 마커를 표시할 지도 객체
+		});
 
-			// 말풍선 내용
-			//'<a href="https://www.google.co.kr/maps/place/%ED%95%9C%EA%B5%AD%EB%A7%88%EC%9D%B4%ED%81%AC%EB%A1%9C%EC%86%8C%ED%94%84%ED%8A%B8/@37.5745869,126.9792435,17z/data=!3m1!4b1!4m7!1m4!3m3!1s0x357ca413fe38a245:0x7298d506cd4d6f1d!2z7ZWc6rWt66eI7J207YGs66Gc7IaM7ZSE7Yq4!3b1!3m1!1s0x357ca413fe38a245:0x7298d506cd4d6f1d?hl=en" target="_blank">https://www.google.co.kr/maps/place/%ED%95%9C%EA%B5%AD%EB%A7%88%EC%9D%B4%ED%81%AC%EB%A1%9C%EC%86%8C%ED%94%84%ED%8A%B8/@37.5745869,126.9792435,17z/data=!3m1!4b1!4m7!1m4!3m3!1s0x357ca413fe38a245:0x7298d506cd4d6f1d!2z7ZWc6rWt66eI7J207YGs66Gc7IaM7ZSE7Yq4!3b1!3m1!1s0x357ca413fe38a245:0x7298d506cd4d6f1d?hl=en</a>'+ //링크도 넣을 수 있음
-			'</div>';
+		// 마커에 클릭 이벤트를 등록한다 (우클릭 : rightclick)
+		daum.maps.event.addListener(marker, 'click', function() {
+		    alert('마커를 클릭했습니다!');
+		});
 
-			var myLatlng = new google.maps.LatLng(Y_point, X_point);
-			var mapOptions = {
-								zoom: zoomLevel,
-								center: myLatlng,
-								mapTypeId: google.maps.MapTypeId.ROADMAP
-			}
-			var map = new google.maps.Map(document.getElementById('map_view'), mapOptions);
-
-			var marker = new google.maps.Marker({
-													position: myLatlng,
-													map: map,
-													title: markerTitle
-			});
-
-			var infowindow = new google.maps.InfoWindow(
-														{
-															content: contentString,
-															maxWidth: markerMaxWidth
-														}
-			);
-
-			google.maps.event.addListener(marker, 'click', function() {
-				infowindow.open(map, marker);
-			});
-		}
 	</script>
-        </head>
-
-        <body onload="initialize()">
-        <div id="map_view" style="width:1140px; height:400px;"></div>
-        </body>
 
         </div>
     </section>
